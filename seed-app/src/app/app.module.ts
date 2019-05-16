@@ -10,6 +10,7 @@ import { LoginComponent } from './comp/login/login.component';
 
 import {AccordionModule} from 'primeng/accordion';    
 import {MenuItem} from 'primeng/api';
+import {SidebarModule} from 'primeng/sidebar';
 
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -34,7 +35,8 @@ import { DialogModule } from 'primeng/dialog';
         HttpClientModule,
         InputTextModule,
         DialogModule,
-        ButtonModule
+        ButtonModule,
+        SidebarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

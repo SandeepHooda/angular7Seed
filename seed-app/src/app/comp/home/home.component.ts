@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Car } from './domain/car';
 import { CarService } from './services/carservice';
 
+
 export class PrimeCar implements Car {
   constructor(public vin?, public year?, public brand?, public color?) {}
 }
@@ -14,7 +15,15 @@ export class PrimeCar implements Car {
 })
 export class HomeComponent implements OnInit {
 
-  
+  visibleSidebar1 = true;
+
+    visibleSidebar2;
+
+    visibleSidebar3;
+
+    visibleSidebar4;
+
+    visibleSidebar5;
   displayDialog: boolean;
 
   car: Car = new PrimeCar();
