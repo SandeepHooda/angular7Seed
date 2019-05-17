@@ -1,3 +1,4 @@
+
 <p-table [columns]="cols" [value]="cars" selectionMode="single" [(selection)]="selectedCar" (onRowSelect)="onRowSelect($event)" [paginator]="true" rows="10">
     <ng-template pTemplate="header" let-columns>
         <tr>
@@ -21,6 +22,53 @@
     </ng-template>
 </p-table>
 
+<p-table [columns]="cols" [value]="cars" selectionMode="single" [(selection)]="selectedCar" (onRowSelect)="onRowSelect($event)" [paginator]="true" rows="10">
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr [pSelectableRow]="rowData">
+            <td *ngFor="let col of columns">
+                {{rowData[col.field]}}
+            </td>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="summary" let-rowData>
+        <div style="text-align:left">
+            <button type="button" pButton icon="pi pi-plus" (click)="showDialogToAdd()" label="Add"></button>
+        </div>
+    </ng-template>
+</p-table>
+
+
+<p-table [columns]="cols" [value]="cars" selectionMode="single" [(selection)]="selectedCar" (onRowSelect)="onRowSelect($event)" [paginator]="true" rows="10">
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns">
+                    {{col.header}}
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr [pSelectableRow]="rowData">
+                <td *ngFor="let col of columns">
+                    {{rowData[col.field]}}
+                </td>
+            </tr>
+        </ng-template>
+    
+        <ng-template pTemplate="summary" let-rowData>
+            <div style="text-align:left">
+                <button type="button" pButton icon="pi pi-plus" (click)="showDialogToAdd()" label="Add"></button>
+            </div>
+        </ng-template>
+    </p-table>
+    
 <p-dialog header="Car Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [closable]="true" [width]="300">
     <div class="ui-g ui-fluid" *ngIf="car">
         <div class="ui-g-4"><label for="vin">Vin</label></div>
@@ -43,45 +91,3 @@
     </p-footer>
 </p-dialog>
 
-
-<p-sidebar [(visible)]="visibleSidebar1" [baseZIndex]="10000">
-    <h1 style="font-weight:normal">Left Sidebar</h1>
-    <button pButton type="button" (click)="visibleSidebar1 = false" label="Save" class="ui-button-success"></button>
-    <button pButton type="button" (click)="visibleSidebar1 = false" label="Cancel" class="ui-button-secondary"></button>
-</p-sidebar>
-
-<p-sidebar [(visible)]="visibleSidebar2" position="right" [baseZIndex]="10000">
-    <h1 style="font-weight:normal">Right Sidebar</h1>
-    <button pButton type="button" (click)="visibleSidebar2 = false" label="Save" class="ui-button-success"></button>
-    <button pButton type="button" (click)="visibleSidebar2 = false" label="Cancel" class="ui-button-secondary"></button>
-</p-sidebar>
-
-<p-sidebar [(visible)]="visibleSidebar3" position="top" [baseZIndex]="10000">
-    <h1 style="font-weight:normal">Top Sidebar</h1>
-    <button pButton type="button" (click)="visibleSidebar3 = false" label="Save" class="ui-button-success"></button>
-    <button pButton type="button" (click)="visibleSidebar3 = false" label="Cancel" class="ui-button-secondary"></button>
-</p-sidebar>
-
-<p-sidebar [(visible)]="visibleSidebar4" position="bottom" [baseZIndex]="10000">
-    <h1 style="font-weight:normal">Bottom Sidebar</h1>
-    <button pButton type="button" (click)="visibleSidebar4 = false" label="Save" class="ui-button-success"></button>
-    <button pButton type="button" (click)="visibleSidebar4 = false" label="Cancel" class="ui-button-secondary"></button>
-</p-sidebar>
-
-<p-sidebar [(visible)]="visibleSidebar5" [fullScreen]="true" [baseZIndex]="10000">
-    <h1 style="font-weight:normal">Full Screen Sidebar</h1>
-    <button pButton type="button" (click)="visibleSidebar5 = false" label="Save" class="ui-button-success"></button>
-    <button pButton type="button" (click)="visibleSidebar5 = false" label="Cancel" class="ui-button-secondary"></button>
-</p-sidebar>
-
-<button pButton type="button" (click)="visibleSidebar1 = true" icon="pi pi-arrow-right"></button>
-<button pButton type="button" (click)="visibleSidebar2 = true" icon="pi pi-arrow-left"></button>
-<button pButton type="button" (click)="visibleSidebar3 = true" icon="pi pi-arrow-down"></button>
-<button pButton type="button" (click)="visibleSidebar4 = true" icon="pi pi-arrow-up"></button>
-<button pButton type="button" (click)="visibleSidebar5 = true" icon="pi pi-th-large"></button>
-
-<p-sidebar [(visible)]="display">
-    Content
-</p-sidebar>
-
-<button type="text" (click)="display = true" pButton icon="pi pi-plus" label="Show"></button>

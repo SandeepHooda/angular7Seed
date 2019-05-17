@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,15 +19,34 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
+import { HeaderComponent } from './comp/header/header.component';
+import { FooterComponent } from './comp/footer/footer.component';
+
+const appRoutes: Routes = [
+  { path: 'home', component: HomeComponent },
+  { path: 'addcash',      component: CashComponent },
+  { path: '',
+  redirectTo: '/home',
+  pathMatch: 'full'
+},
+  { path: '**', component: HomeComponent }
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     CashComponent,
-    LoginComponent
+    LoginComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
+    RouterModule,
+    RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: false } 
+    ),
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
