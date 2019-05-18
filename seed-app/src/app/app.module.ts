@@ -21,6 +21,8 @@ import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { HeaderComponent } from './comp/header/header.component';
 import { FooterComponent } from './comp/footer/footer.component';
+import {HashLocationStrategy, Location, LocationStrategy} from '@angular/common';
+import {enableProdMode} from '@angular/core';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -58,7 +60,7 @@ const appRoutes: Routes = [
         ButtonModule,
         SidebarModule
   ],
-  providers: [],
+  providers: [Location, {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
