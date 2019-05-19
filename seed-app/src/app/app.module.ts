@@ -22,15 +22,14 @@ import { DialogModule } from 'primeng/dialog';
 import { HeaderComponent } from './comp/header/header.component';
 import { FooterComponent } from './comp/footer/footer.component';
 import {HashLocationStrategy, Location, LocationStrategy} from '@angular/common';
-import {enableProdMode} from '@angular/core';
+import {LoginService} from './comp/login/login.service';
+
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'addcash',      component: CashComponent },
-  { path: '',
-  redirectTo: '/home',
-  pathMatch: 'full'
-},
+  { path: 'login',      component: LoginComponent },
+  { path: '',  redirectTo: '/home',  pathMatch: 'full'},
   { path: '**', component: HomeComponent }
 ];
 
@@ -60,7 +59,9 @@ const appRoutes: Routes = [
         ButtonModule,
         SidebarModule
   ],
-  providers: [Location, {provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [Location, {provide: LocationStrategy, useClass: HashLocationStrategy}, LoginService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+
+}

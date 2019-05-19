@@ -35,10 +35,14 @@ export class HomeComponent implements OnInit {
   cars: Car[];
 
   cols: any[];
+  
 
-  constructor(private carService: CarService) { }
+  constructor(private carService: CarService) { 
+      
+  }
 
   ngOnInit() {
+    
       this.carService.getCarsSmall().then(cars => this.cars = cars);
 
       this.cols = [
@@ -49,6 +53,8 @@ export class HomeComponent implements OnInit {
       ];
   }
 
+  
+   
   showDialogToAdd() {
       this.newCar = true;
       this.car = new PrimeCar();
