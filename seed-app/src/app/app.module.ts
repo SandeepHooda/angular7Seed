@@ -23,7 +23,7 @@ import { HeaderComponent } from './comp/header/header.component';
 import { FooterComponent } from './comp/footer/footer.component';
 import {HashLocationStrategy, Location, LocationStrategy} from '@angular/common';
 import {LoginService} from './comp/login/login.service';
-
+import {Global} from './comp/global/global';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -59,7 +59,7 @@ const appRoutes: Routes = [
         ButtonModule,
         SidebarModule
   ],
-  providers: [Location, {provide: LocationStrategy, useClass: HashLocationStrategy}, LoginService],
+  providers: [Location, {provide: LocationStrategy, useClass: HashLocationStrategy}, LoginService, Global],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

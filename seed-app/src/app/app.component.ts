@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import {LoginService} from './comp/login/login.service';
 import {LoginVO} from './comp/login/loginVO';
+import {Global} from './comp/global/global';
 
 
 @Component({
@@ -15,7 +16,8 @@ export class AppComponent implements OnInit{
   regID:String;
   title = 'seed-app';
 
-  constructor(private _router: Router,private httpClient: HttpClient, private loginService : LoginService){}
+  constructor(private _router: Router,private httpClient: HttpClient, 
+    private loginService : LoginService, private global:Global){}
 
   ngOnInit() {
     let  local : Boolean= false;
@@ -31,12 +33,9 @@ export class AppComponent implements OnInit{
       this.regID = window.localStorage.getItem('regID');
     }
     
-    if (!this.regID){
-      this._router.navigate(['login']);
-    }else {
-      this.validateRegID(this.regID);
-     
-    }
+    this.global.navigationDisabled = false;
+    this.validateRegID(this.regID);
+    
     console.log("AppComponent init method reg id "+this.regID+" url :  "+window.location.href)
   }
 
@@ -49,15 +48,21 @@ export class AppComponent implements OnInit{
             if (loginVO != null && loginVO.emailID){
               window.localStorage.setItem('regID', ''+this.regID);
             }else {
-              this._router.navigate(['login']);
+              this.showLoginPage();
             }
           }, error => {
             console.log(error)
-            this._router.navigate(['login']);
+            this.showLoginPage();
           }
         );
+      }else {
+        this.showLoginPage();
       }
 
+  }
+  showLoginPage():void{
+    this.global.navigationDisabled = true;
+    this._router.navigate(['login']);
   }
   getCookie(cname:String):String {
     var name = cname + "=";

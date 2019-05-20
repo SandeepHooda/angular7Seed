@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Global} from '../global/global';
 
 @Component({
   selector: 'app-header',
@@ -7,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private global:Global) { }
 
    openNav():void {
-    document.getElementById("mySidenav").style.width = "250px";
+     if (!this.global.navigationDisabled){
+        document.getElementById("mySidenav").style.width = "250px";
+     }else {
+      document.getElementById("mySidenav").style.width = "0px";
+     }
+    
   }
   
    closeNav():void {
